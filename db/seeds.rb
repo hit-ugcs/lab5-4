@@ -7,3 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create name: 'test', nickname: '测试', student_id: 123456
+Course.create name: 'SaaS'

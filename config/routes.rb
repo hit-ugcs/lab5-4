@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'courses#home'
+
   resources :courses do
     resources :nodes
   end

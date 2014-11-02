@@ -1,0 +1,17 @@
+<h1>Courses#show</h1>
+<p>Find me in app/views/courses/show.html.erb</p>
+
+<%= link_to 'grade setting', @course %>
+<%= link_to 'grade report', @course %>
+
+<hr>
+
+<%= link_to 'New Item', new_course_node_path(@course) %>
+
+<% if @sheet_info %>
+  <ul>
+  <% @sheet_info.each do |sheet| %>
+    <li>name: <%= link_to sheet.name, edit_course_node_path(course_id: sheet.course_id, id: sheet.id) %> weight: <%= sheet.weight %> <%= link_to 'delete', course_node_path(course_id: sheet.course_id, id: sheet.id), method: 'delete' %> course: <%= sheet.course.name %></li>
+  <% end %>
+  </ul>
+<% end %>

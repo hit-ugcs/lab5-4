@@ -1,0 +1,11 @@
+<h1>Nodes#new</h1>
+<p>Find me in app/views/nodes/new.html.erb</p>
+
+<%= form_for [:course, @node] do |f| %>
+  <%= f.text_field :name %>
+  <%= f.number_field :weight %>
+  <%= f.hidden_field :father_id, value: '-1' %>
+  <%= f.hidden_field :course_id, value: params[:course_id] %>
+
+  <%= f.submit %>
+<% end %>

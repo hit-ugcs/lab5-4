@@ -1,17 +1,38 @@
-<h1>Courses#show</h1>
-<p>Find me in app/views/courses/show.html.erb</p>
+<div class="row">
+  <h1 class="text-center">Grading Sheet</h1>
+</div>
+<hr class="style-eight">
 
-<%= link_to 'grade setting', @course %>
-<%= link_to 'grade report', @course %>
+<div class="row">
+  <div class="col-md-3">
 
-<hr>
+    <div class="list-group">
+      <a href="/courses/1" class="list-group-item active">
+        1. Grade Configuration
+      </a>
+      <a href="#" class="list-group-item">
+        2. Grade Students
+      </a>
+      <a href="#" class="list-group-item">
+        3. Final Report
+      </a>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="row">
+      <%= link_to 'New Item', new_course_node_path(@course), class: 'btn btn-primary' %>
+    </div>
+    <hr>
+    <div class="row">
+      <% if @sheet_info %>
+        <ul>
+          <% @sheet_info.each do |sheet| %>
+            <li>name: <%= link_to sheet.name, edit_course_node_path(course_id: sheet.course_id, id: sheet.id) %> weight: <%= sheet.weight %> <%= link_to 'delete', course_node_path(course_id: sheet.course_id, id: sheet.id), method: 'delete' %> course: <%= sheet.course.name %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
 
-<%= link_to 'New Item', new_course_node_path(@course) %>
+  </div>
+</div>
 
-<% if @sheet_info %>
-  <ul>
-  <% @sheet_info.each do |sheet| %>
-    <li>name: <%= link_to sheet.name, edit_course_node_path(course_id: sheet.course_id, id: sheet.id) %> weight: <%= sheet.weight %> <%= link_to 'delete', course_node_path(course_id: sheet.course_id, id: sheet.id), method: 'delete' %> course: <%= sheet.course.name %></li>
-  <% end %>
-  </ul>
-<% end %>

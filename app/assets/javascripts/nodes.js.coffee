@@ -6,7 +6,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-$ ->
+ready = ->
   counter = 0
 
   getInputData = (formID, inputID) ->
@@ -52,3 +52,6 @@ $ ->
       .append("<td><input form=\"form-#{counter}\" id='weight' type='number' name='node[weight]' /></td>")
       .append("<td><a class='fa fa-upload' data-submit data-form-id=\"form-#{counter}\"></a></td>")
       .appendTo($("tbody"))
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

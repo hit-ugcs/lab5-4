@@ -13,6 +13,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def grade
+    @user = User.find(params[:user_id])
+    @nodes = Node.where(course_id: params[:course_id])
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  private
+
   def user_params
     params.require(:user).permit(:name, :nickname, :student_id)
   end

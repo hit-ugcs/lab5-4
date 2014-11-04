@@ -9,9 +9,11 @@
     <%= f.hidden_field :id, value: @node.id %>
     <hr>
 
-    <button type="button" id="new-item" class="btn btn-primary btn-lg">New Sub Item</button>
-
-
+    <% if @node.is_sub? %>
+      <button type="button" id="new-item" class="btn btn-danger disabled">Cant Create Sub-Sub item</button>
+    <% else %>
+      <button type="button" id="new-item" class="btn btn-primary">New Sub Item</button>
+    
     <hr>
       <h3>The weight of sub item must sum to 100%.</h3>
       <table class="table table-striped table-hover ">
@@ -40,6 +42,8 @@
         </tbody>
       </table>
       
+    <% end %>
+
     <hr>
 
     <%= f.submit class: 'btn btn-primary' %>

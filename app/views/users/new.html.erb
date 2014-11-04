@@ -1,15 +1,16 @@
-<h1>New Student</h1>
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+  <%= bootstrap_form_for @node, url: course_users_path, layout: :horizontal do |f| %>
+    <fieldset><legend><h1 class="text-center">Add new student</h1></legend></fieldset>
+    <%= f.text_field :name %>
+    <%= f.text_field :nickname %>
+    <%= f.number_field :student_id %>
+    <hr>
 
-<%= form_for [:course, @user] do |f| %>
-  <p>name</p>
-  <%= f.text_field :name %>
-  <br />
-  <p>nickname</p>
-  <%= f.text_field :nickname %>
-  <br />
-  <p>studentid</p>
-  <%= f.number_field :student_id %>
-  <br />
+    <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
+</div>
 
-  <%= f.submit %>
-<% end %>
+<div id="for-form"></div>
+
+</div>

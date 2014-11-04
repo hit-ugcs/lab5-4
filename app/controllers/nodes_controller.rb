@@ -6,12 +6,10 @@ class NodesController < ApplicationController
     @node = Node.new(node_params) #.merge(course_id: params[:course_id]))
     respond_to do |format|
       if @node.save
-        format.html {redirect_to '/courses/1'}
+        format.html {redirect_to '/courses/1/grade_configuration'}
         format.json { render json: @node, status: :created, location: @student }
       end
     end
-
-
     #if @node.save
     #  redirect_to '/courses/1'
     #else
@@ -31,7 +29,7 @@ class NodesController < ApplicationController
   def destroy
     @node = Node.find(params[:id])
     @node.try(:delete)
-    redirect_to '/courses/1'
+    redirect_to '/courses/1/grade_configuration'
   end
 
   def update

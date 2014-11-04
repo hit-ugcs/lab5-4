@@ -1,0 +1,38 @@
+<div class="row">
+  <h1 class="text-center">Grading Sheet</h1>
+</div>
+<hr class="style-eight">
+
+<div class="row">
+  <div class="col-md-3">
+
+    <div class="list-group">
+      <a href="/courses/1/grade_configuration" class="list-group-item active">
+        1. Grade Configuration
+      </a>
+      <a href="/courses/1/grade_students" class="list-group-item">
+        2. Grade Students
+      </a>
+      <a href="/courses/1/final_report" class="list-group-item">
+        3. Final Report
+      </a>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="row">
+      <%= link_to 'New Item', new_course_node_path(@course), class: 'btn btn-primary' %>
+    </div>
+    <hr>
+    <div class="row">
+      <% if @node_info %>
+        <ul>
+          <% @node_info.each do |node| %>
+            <li>name: <%= link_to node.name, edit_course_node_path(course_id: node.course_id, id: node.id) %> weight: <%= node.weight %> <%= link_to 'delete', course_node_path(course_id: node.course_id, id: node.id), method: 'delete' %> course: <%= node.course.name %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
+

@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
   resources :courses do
     resources :nodes
+    resources :users
+    member do
+      get 'grade_configuration', action: :show
+      get 'grade_students'
+      get 'final_report'
+    end
   end
 
   #resources :nodes

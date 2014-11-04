@@ -5,18 +5,7 @@
 
 <div class="row">
   <div class="col-md-3">
-
-    <div class="list-group">
-      <a href="/courses/1" class="list-group-item active">
-        1. Grade Configuration
-      </a>
-      <a href="#" class="list-group-item">
-        2. Grade Students
-      </a>
-      <a href="#" class="list-group-item">
-        3. Final Report
-      </a>
-    </div>
+    <%= render partial: 'nav.html.erb' %>
   </div>
   <div class="col-md-9">
     <div class="row">
@@ -25,11 +14,27 @@
     <hr>
     <div class="row">
       <% if @sheet_info %>
-        <ul>
-          <% @sheet_info.each do |sheet| %>
-            <li>name: <%= link_to sheet.name, edit_course_node_path(course_id: sheet.course_id, id: sheet.id) %> weight: <%= sheet.weight %> <%= link_to 'delete', course_node_path(course_id: sheet.course_id, id: sheet.id), method: 'delete' %> course: <%= sheet.course.name %></li>
+      <table class="table table-striped table-hover ">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Item Nane</th>
+            <th>Weight</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @sheet_info.each_with_index do |sheet, index| %>
+            <tr>
+            <td><%= index %></td>
+            <td><%= link_to sheet.name, edit_course_node_path(course_id: sheet.course_id, id: sheet.id) %></td>
+            <td><%= sheet.weight %></td>
+            <td>
+              <%= link_to 'view', course_node_path(course_id: sheet.course_id, id: sheet.id) %>
+              <%= link_to 'edit', edit_course_node_path(course_id: sheet.course_id, id: sheet.id) %>
+              <%= link_to 'delete', course_node_path(course_id: sheet.course_id, id: sheet.id), method: 'delete' %></td>
+            </tr>
           <% end %>
-        </ul>
       <% end %>
     </div>
 

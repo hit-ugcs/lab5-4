@@ -3,7 +3,7 @@ class NodesController < ApplicationController
   end
 
   def create
-    @node = Node.new(node_params) #.merge(course_id: params[:course_id]))
+    @node = Node.new(node_params.merge(course_id: params[:course_id]))
     respond_to do |format|
       if @node.save
         format.html {redirect_to '/courses/1/grade_configuration'}
@@ -41,7 +41,7 @@ class NodesController < ApplicationController
   private
   
   def node_params
-    params.require(:node).permit(:name, :weight, :father_id, :course_id)
+    params.require(:node).permit(:name, :weight, :father_id)
   end
 
 end

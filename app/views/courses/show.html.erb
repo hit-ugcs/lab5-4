@@ -1,0 +1,53 @@
+<div class="row">
+  <h1 class="text-center">Grading Sheet</h1>
+</div>
+<hr class="style-eight">
+
+<div class="row">
+  <div class="col-md-3">
+
+    <div class="list-group">
+      <a href="/courses/1" class="list-group-item active">
+        1. Grade Configuration
+      </a>
+      <a href="#" class="list-group-item">
+        2. Grade Students
+      </a>
+      <a href="#" class="list-group-item">
+        3. Final Report
+      </a>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="row">
+      <%= link_to 'New Item', new_course_node_path(@course), class: 'btn btn-primary' %>
+    </div>
+    <hr>
+    <div class="row">
+      <% if @first_level_node %>
+        <ul>
+          <% @first_level_node.each do |fln| %>
+            <li>name: <%= link_to fln.name, edit_course_node_path(course_id: fln.course_id, id: fln.id) %> weight: <%= fln.weight %> <%= link_to 'delete', course_node_path(course_id: fln.course_id, id: fln.id), method: 'delete' %> course: <%= fln.course.name %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <%= link_to 'New Student', new_course_user_path(course_id: 1), class: 'btn btn-primary' %>
+    </div>
+    <hr>
+    <div class="row">
+      <% if @user_info %>
+        <ul>
+          <% @user_info.each do |user| %>
+            <li>name: <%= link_to user.name, edit_course_user_path(course_id: 1, id: user.id) %> nickname: <%= user.nickname %> studentID: <%= user.student_id %> <%= link_to 'delete', course_user_path(course_id: 1, id: user.id), method: 'delete' %> | <%= link_to 'Add Grade', course_user_path(course_id: 1, id: user.id) %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+

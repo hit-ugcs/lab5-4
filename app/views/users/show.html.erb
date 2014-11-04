@@ -1,0 +1,36 @@
+<h1>Users#show</h1>
+
+<p>name: <%= @user.name %></p>
+<p>nickname: <%= @user.nickname %></p>
+<p>student ID: <%= @user.student_id %></p>
+
+<p>Grade:</p>
+<ul>
+  <hr />
+  <% @first_level_node.each do |fln| %>
+    <li>name: <%= fln.name %> weight: <%= fln.weight %>
+      <ul>
+        <% Node.where(course_id: params[:course_id], father_id: fln.id).each do |cn| %>
+          <li>name: <%= cn.name %> weight: <%= cn.weight %> <%= link_to 'delete', course_node_path(course_id: cn.course_id, id: cn.id), method: 'delete' %></li>
+        <% end %>
+      </ul>
+      <p>Add a new child:</p>
+      <%= form_for [:course, @new_child_node] do |f| %>
+        <p>name</p>
+        <%= f.text_field :name %>
+        <p>weight</p>
+        <%= f.number_field :weight %>
+        <%= f.hidden_field :father_id, value: fln.id %>
+        <%= f.hidden_field :course_id, value: params[:course_id] %>
+        <!--<%= form_for @value do |fv| %>
+          <p>value</p>
+          <%= fv.number_field :value %>
+          <%= fv.hidden_field :node_id, value: fln.id %>
+          <%= fv.hidden_field :user_id, value: params[:id] %>
+        <% end %>-->
+        <%= f.submit %>
+      <% end %>
+    </li>
+    <hr />
+  <% end %>
+</ul>

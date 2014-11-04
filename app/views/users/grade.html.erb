@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <fieldset><legend><h1 class="text-center">Grade Student</h1></legend></fieldset>
+    <table class="table table-striped table-hover ">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Nickname</th>
+          <th>Student ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @user.name %></td>
+          <td><%= @user.nickname %></td>
+          <td><%= @user.student_id %></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <table class="table table-striped table-hover ">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Item Name</th>
+          <th>Weight</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @nodes.each_with_index do |node, nodeindex| %>
+          <tr>
+            <td><%= nodeindex %></td>
+            <td><%= node.name %></td>
+            <td><%= node.weight %>%</td>
+          </tr>
+          <% Node.where(course_id: params[:course_id], father_id: node.id).each_with_index do |sheet, index| %>
+            <tr>
+              <td><%= "" %></td>
+              <td><%= "┣▶" %><%= sheet.name %></td>
+              <td><%= sheet.weight %>%</td>
+              <td>
+                <%= bootstrap_form_for @value do |f| %>
+                  <%= f.number_field :value %>
+                  <%= f.hidden_field :user_id, value: @user.id %>
+                  <%= f.hidden_field :node_id, value: sheet.id %>
+                  <%= f.submit class: 'btn btn-primary' %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <hr>
+  </div>
+
+  <div id="for-form"></div>
+</div>

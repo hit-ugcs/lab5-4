@@ -13,8 +13,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(user_params)
+    redirect_to '/courses/1'
+  end
+
   def user_params
     params.require(:user).permit(:name, :nickname, :student_id)
+  end
+
+  def grade
+    @user = User.find(params[:id])
+    @nodes = Node.where(course_id: params[:course_id], father_id: -1)
+    @value = Value.new
   end
 
 end

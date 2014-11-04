@@ -5,7 +5,7 @@ class NodesController < ApplicationController
   def create
     @node = Node.new(node_params.merge(course_id: params[:course_id]))
     if @node.save
-      redirect_to '/courses/1'
+      redirect_to '/courses/1/grade_configuration'
     else
       # blah blah
     end
@@ -22,7 +22,7 @@ class NodesController < ApplicationController
   def destroy
     @node = Node.find(params[:id])
     @node.try(:delete)
-    redirect_to '/courses/1'
+    redirect_to '/courses/1/grade_configuration'
   end
 
   def update

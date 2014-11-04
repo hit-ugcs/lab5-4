@@ -35,6 +35,9 @@ class NodesController < ApplicationController
   end
 
   def update
+    @node = Node.find(params[:id])
+    @node.update_attributes(node_params)
+    redirect_to '/courses/1'
   end
 
   private

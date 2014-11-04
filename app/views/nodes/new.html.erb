@@ -1,8 +1,23 @@
-<%= form_for [:course, @node] do |f| %>
-  <%= f.text_field :name %>
-  <%= f.number_field :weight %>
-  <%= f.hidden_field :father_id, value: '-1' %>
-  <%= f.hidden_field :course_id, value: params[:course_id] %>
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+  <%= bootstrap_form_for @node, url: course_nodes_path, layout: :horizontal do |f| %>
+    <fieldset><legend><h1 class="text-center">Add new 1st score node</h1></legend></fieldset>
+    <%= f.text_field :name %>
+    <%= f.number_field :weight %>
+    <%= f.hidden_field :father_id, value: '-1' %>
+    <%= f.hidden_field :course_id, value: params[:course_id] %>
+    <%= f.hidden_field :id, value: @node.id %>
+    <hr>
 
-  <%= f.submit %>
-<% end %>
+    <button type="button" id="new-item" class="btn btn-primary disabled">Can't add sub-item before save</button>
+    <hr>
+
+    <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+<div id="for-form"></div>
+
+</div>
+
+

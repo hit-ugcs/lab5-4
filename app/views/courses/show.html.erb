@@ -25,15 +25,12 @@
         </thead>
         <tbody>
           <% @sheet_info.each_with_index do |sheet, index| %>
-            <tr>
-            <td><%= index %></td>
-            <td><%= link_to sheet.name, edit_course_node_path(course_id: sheet.course_id, id: sheet.id) %></td>
-            <td><%= sheet.weight %></td>
-            <td>
-              <%= link_to 'view', course_node_path(course_id: sheet.course_id, id: sheet.id) %>
-              <%= link_to 'edit', edit_course_node_path(course_id: sheet.course_id, id: sheet.id) %>
-              <%= link_to 'delete', course_node_path(course_id: sheet.course_id, id: sheet.id), method: 'delete' %></td>
-            </tr>
+            <%= render partial: 'list.html.erb', locals: {sheet: sheet, index: index, sub: false} %>
+            <% if sheet.sub_item %>
+              <% sheet.sub_item.each do |s| %>
+                <%= render partial: 'list.html.erb', locals: {sheet: s, index: '', sub: true} %>
+              <% end %>
+            <% end %>
           <% end %>
       <% end %>
     </div>

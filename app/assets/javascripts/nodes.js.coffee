@@ -16,25 +16,17 @@ $ ->
     utf8: "✓"
     authenticity_token:
       $('meta[name="csrf-token"]').attr('content')
-    student: 
-      studentid:    parseInt(getInputData(formID, "student_studentid")),
-      studentname:  getInputData(formID, "student_studentname"),
-      nickname:     getInputData(formID, "student_nickname"),
-      projectscore: parseInt(getInputData(formID, "student_projectscore")),
-      finalscore:   parseInt(getInputData(formID, "student_finalscore")),
-      labscore:     parseInt(getInputData(formID, "student_labscore")),
-      classscore:   parseInt(getInputData(formID, "student_classscore"))
+    node: 
+      name:  getInputData(formID, "name"),
+      weight: parseInt(getInputData(formID, "weight")),
+      father_id: $('input#node_id').val(),
+      course_id: $('input#node_course_id').val()
 
   buildRow = (jdata) ->
     $("<tr></tr>")
-      .append("<td>#{jdata.studentid}</td>")
-      .append("<td>#{jdata.studentname}</td>")
-      .append("<td>#{jdata.nickname}</td>")
-      .append("<td>#{jdata.projectscore}%</td>")
-      .append("<td>#{jdata.finalscore}%</td>")
-      .append("<td>#{jdata.labscore}%</td>")
-      .append("<td>#{jdata.classscore}%</td>")
-      .append("<td>#{jdata.projectscore + jdata.finalscore + jdata.labscore + jdata.classscore}%</td>")
+      .append("<td>#{jdata.id}</td>")
+      .append("<td>#{jdata.name}</td>")
+      .append("<td>#{jdata.weight}</td>")
       .append("<td><a class='fa fa-eye' href='/students/#{jdata.id}'></a> <a class='fa fa-pencil-square-o' href='/students/#{jdata.id}/edit'></a> <a class='fa fa-trash' href='/students/#{jdata.id}' data-confirm='Are you sure?' data-method='delete' rel='nofollow'></a></td>")
 
   # submit link clicked
@@ -43,7 +35,7 @@ $ ->
     console.log getFormSerialData(selector)
     $.ajax
       type: 'post',
-      url: '/students.json',
+      url: '/courses/1/nodes.json',
       data: getFormSerialData(selector),
       success: (data) ->
         console.log(data)
@@ -56,7 +48,7 @@ $ ->
       .append("<form action='/nodes.json' method='post' id=\"form-#{counter}\" ></form>")
     $("<tr id=\"form-#{counter}\"></tr>")
       .append("<td>#{counter}</td>")
-      .append("<td><input form=\"form-#{counter}\" id='student_studentname'  name='node[name]'  type='text' /></td>")
-      .append("<td><input form=\"form-#{counter}\" id='final' type='number' name='node[weight]' /></td>")
+      .append("<td><input form=\"form-#{counter}\" id='name'  name='node[name]'  type='text' /></td>")
+      .append("<td><input form=\"form-#{counter}\" id='weight' type='number' name='node[weight]' /></td>")
       .append("<td><a class='fa fa-upload' data-submit data-form-id=\"form-#{counter}\"></a></td>")
       .appendTo($("tbody"))

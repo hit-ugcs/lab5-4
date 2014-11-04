@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :courses do
     resources :nodes
   end
-  
+
   #resources :nodes
   resources :values
   

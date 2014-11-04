@@ -6,10 +6,12 @@
     <%= f.number_field :weight %>
     <%= f.hidden_field :father_id, value: '-1' %>
     <%= f.hidden_field :course_id, value: params[:course_id] %>
+    <%= f.hidden_field :id, value: @node.id %>
     <hr>
 
-    <%= link_to 'New sub item', '', id: 'new-item', class: 'btn btn-primary' %>
-    
+    <button type="button" id="new-item" class="btn btn-primary btn-lg">New Sub Item</button>
+
+
     <hr>
 
       <table class="table table-striped table-hover ">
@@ -22,19 +24,20 @@
           </tr>
         </thead>
         <tbody>
-        <% if @sub_item %>
-          <% @sub_item.each_with_index do |sheet, index| %>
-            <tr>
-            <td><%= index %></td>
-            <td><%= link_to sheet.name, edit_course_node_path(course_id: sheet.course_id, id: sheet.id) %></td>
-            <td><%= sheet.weight %></td>
-            <td>
-              <%= link_to 'view', course_node_path(course_id: sheet.course_id, id: sheet.id) %>
-              <%= link_to 'edit', edit_course_node_path(course_id: sheet.course_id, id: sheet.id) %>
-              <%= link_to 'delete', course_node_path(course_id: sheet.course_id, id: sheet.id), method: 'delete' %></td>
-            </tr>
+          <% if @sub_item %>
+            <% @sub_item.each_with_index do |sheet, index| %>
+              <tr>
+              <td><%= index %></td>
+              <td><%= link_to sheet.name, edit_course_node_path(course_id: sheet.course_id, id: sheet.id) %></td>
+              <td><%= sheet.weight %></td>
+              <td>
+                <%= link_to 'view', course_node_path(course_id: sheet.course_id, id: sheet.id) %>
+                <%= link_to 'edit', edit_course_node_path(course_id: sheet.course_id, id: sheet.id) %>
+                <%= link_to 'delete', course_node_path(course_id: sheet.course_id, id: sheet.id), method: 'delete' %></td>
+              </tr>
+            <% end %>
           <% end %>
-        <% end %>
+        </tbody>
       </table>
       
     <hr>

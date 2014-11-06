@@ -28,10 +28,10 @@ class Node < ActiveRecord::Base
 
   def count(user_id)
     if has_sub?
-      children.inject(0) { |mem, node| mem + node.count(user_id) }
+      children.inject(0) { |mem, node| mem + node.count(user_id)  }
     else
       val = binding_value(user_id)
-      val.nil? ? nil : val.value * weight / 100.0
+      val.nil? ? 0 : val.value * weight / 100.0
     end
   end
 

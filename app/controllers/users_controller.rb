@@ -27,8 +27,9 @@ class UsersController < ApplicationController
   end
 
   def send_grade_info
+    @course = Course.find(params[:course_id])
     @user = User.find(params[:id])
-    Usermailer.send_grade_info(@user).deliver
+    Usermailer.send_grade_info(@course, @user).deliver
     redirect_to '/courses/1/grade_students'
   end
 

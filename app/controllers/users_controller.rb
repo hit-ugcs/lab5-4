@@ -13,6 +13,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.values.delete_all
+    @user.delete
+    redirect_to grade_students_course_path(params[:course_id])
+  end
+
   def show
     @user = User.find(params[:id])
   end

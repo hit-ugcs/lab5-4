@@ -7,6 +7,7 @@ ready = ->
   $("input[data-score-item]").focusout ->
     me = $(this)
     value = $(this).val()
+    $(this).closest('button').html("Syncing...")
     $(this).closest('span#statue').html("<i class='fa fa-fw fa-refresh fa-spin'></i>")
     $(this).closest('div.form-group').removeClass('has-success')
     $.ajax
@@ -18,7 +19,8 @@ ready = ->
         value:
           value: value
       success: (data) ->
-        $(this).closest('span#statue').html("<i class='fa fa-fw fa-check'></i>")
+        me.closest('span#statue').html("<i class='fa fa-fw fa-check'></i>")
+        me.closest('button').html("Submit")
         me.closest('div.form-group').addClass('has-success')
 
 

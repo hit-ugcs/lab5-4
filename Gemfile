@@ -37,6 +37,8 @@ gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'font-awesome-rails'
 
+gem 'rails_stdout_logging'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

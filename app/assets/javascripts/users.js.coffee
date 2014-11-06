@@ -28,7 +28,7 @@ ready = ->
         me.closest('div').find('button').html("Submit")
         me.closest('div.form-group').addClass('has-error')
 
-  $("button").click ->
+  $("button.useless").click ->
     alert "Data alredy synced!"
 
 $(document).ready(ready)

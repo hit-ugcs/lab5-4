@@ -22,10 +22,16 @@ class UsersController < ApplicationController
     @grades = @user.grade_list(params[:course_id])
   end
 
+  def send_grade_info
+    @user = User.find(params[:id])
+    Usermailer.send_grade_info(@user).deliver
+    redirect_to '/courses/1/grade_students'
+  end
+
   def update
     @user = User.find(params[:id])
     @user.update_attributes(user_params)
-    redirect_to '/courses/1'
+    redirect_to '/courses/1/grade_students'
   end
 
   private

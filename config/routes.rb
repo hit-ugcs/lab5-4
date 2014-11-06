@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :users do
       member do
         get 'grade'
+        get 'send_grade_info'
       end
     end
     member do

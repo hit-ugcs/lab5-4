@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def edit
     @user = User.find(params[:id])
   end
@@ -22,16 +26,23 @@ class UsersController < ApplicationController
     @grades = @user.grade_list(params[:course_id])
   end
 
+  def send_grade_info
+    @course = Course.find(params[:course_id])
+    @user = User.find(params[:id])
+    Usermailer.send_grade_info(@course, @user).deliver
+    redirect_to '/courses/1/grade_students'
+  end
+
   def update
     @user = User.find(params[:id])
     @user.update_attributes(user_params)
-    redirect_to '/courses/1'
+    redirect_to '/courses/1/grade_students'
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :nickname, :student_id)
+    params.require(:user).permit(:name, :nickname, :student_id, :email, :phone)
   end
 
 end

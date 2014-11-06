@@ -1,14 +1,22 @@
 <div class="row">
+  <h1 class="text-center">New Student</h1>
+</div>
+<hr class="style-eight">
+
+<div class="row">
 <div class="col-md-8 col-md-offset-2">
   <%= bootstrap_form_for @user, url: course_users_path, layout: :horizontal do |f| %>
-    <fieldset><legend><h1 class="text-center">Add new student</h1></legend></fieldset>
     <%= f.text_field :name %>
     <%= f.text_field :nickname %>
     <%= f.number_field :student_id %>
+    <%= f.text_field :email %>
+    <%= f.number_field :phone %>
     <hr>
 
     <%= f.submit class: 'btn btn-primary' %>
   <% end %>
+  <br>
+  <%= link_to 'Back', grade_students_course_path(id: params[:course_id]), class: 'btn btn-primary' %>
 </div>
 
 <div id="for-form"></div>

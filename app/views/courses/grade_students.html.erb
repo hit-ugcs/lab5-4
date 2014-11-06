@@ -32,6 +32,8 @@
               <th>Name</th>
               <th>Nickname</th>
               <th>Student ID</th>
+              <th>Email</th>
+              <th>Phone</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -39,14 +41,14 @@
             <% @user_info.each_with_index do |user, index| %>
               <tr>
                 <td><%= index %></td>
-                <td><%= user.name %></td>
+                <td><%= link_to user.name, course_user_path(course_id: params[:id], id: user.id) %></td>
                 <td><%= user.nickname %></td>
                 <td><%= user.student_id %></td>
+                <td><%= user.email %></td>
+                <td><%= user.phone %></td>
                 <td>
-                  <%= link_to 'view', course_user_path(course_id: params[:id], id: user.id) %>
-                  <%= link_to 'edit', edit_course_user_path(course_id: params[:id], id: user.id) %>
-                  <%= link_to 'delete', course_user_path(course_id: params[:id], id: user.id), method: 'delete' %> | 
-                  <%= link_to 'grade', grade_course_user_path(course_id: params[:id], id: user.id) %>
+                  <%= link_to 'grade', grade_course_user_path(course_id: params[:id], id: user.id), class: 'btn btn-primary' %>
+                  <%= link_to 'send grade info by email', send_grade_info_course_user_path(course_id: params[:id], id: user.id), data: { confirm: "Do you want to send an email to #{user.email}?" }, class: 'btn btn-primary' %>
                 </td>
               </tr>
             <% end %>

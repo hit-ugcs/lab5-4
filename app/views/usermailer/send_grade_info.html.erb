@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Grade information for <%= @user.name %></h1>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <% if @sheet_info %>
+          <table class="table table-striped table-hover ">
+            <thead>
+              <tr>
+                <th>Grade Item</th>
+                <th>Weight</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @sheet_info.each do |sheet| %>
+                <%= render partial: 'list.html.erb', locals: {sheet: sheet, sub: false} %>
+                <% if c = sheet.children %>
+                  <% c.each do |s| %>
+                    <%= render partial: 'list.html.erb', locals: {sheet: s, sub: true} %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>

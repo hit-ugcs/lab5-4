@@ -8,9 +8,9 @@ class ValuesController < ApplicationController
     @value = Value.find(params[:id])
     respond_to do |format|
       if @value.update_attributes(value: params[:value][:value])
-        format.json { render json: @value, statue: :updated}
+        format.json { render json: @value }
       else
-        format.json { render statue: :error }
+        format.json { render status: :error }
       end
     end
   end

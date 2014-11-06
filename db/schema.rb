@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20141106105207) do
     t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
     t.integer  "phone"
   end
 

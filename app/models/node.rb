@@ -22,4 +22,12 @@ class Node < ActiveRecord::Base
     Value.where(node_id: id, user_id: user_id).first
   end
 
+  def count(user_id)
+    if has_sub?
+      children.inject(0) { |mem, var| mem + var.binding_value(user_id).value }
+    else
+      binding_value(user_id).value * weight / 100.0
+    end
+  end
+
 end

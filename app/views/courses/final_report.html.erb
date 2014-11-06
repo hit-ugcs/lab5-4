@@ -18,25 +18,29 @@
       </a>
     </div>
   </div>
-  <div class="col-md-9">
-    <div class="row">
-
-      <table class="table table-striped table-hover ">
-        <thead>
-          <tr>
-            <th>HIT ID</th>
-            <th>Name</th>
-            <th>Nickname</th>
-            <th>Grade</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @user.each do |user| %>
-            <%= render partial: 'users/list.html.erb', locals: {user: user, course_id: params[:id]} %>
-          <% end %>
-        </tbody>
-    </div>
+  <div class="col-md-8">
+    <% order = @partition.keys.sort %>
+    <% order.each do |k| %>
+      <div class="row">
+        <h1><%= k %></h1>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>HIT ID</th>
+              <th>Name</th>
+              <th>Nickname</th>
+              <th>Grade</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @partition[k].each do |user| %>
+              <%= render partial: 'users/list.html.erb', locals: {user: user, course_id: params[:id]} %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
   </div>
 </div>
 

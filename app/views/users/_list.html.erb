@@ -3,5 +3,5 @@
   <td><%= user.name %></td>
   <td><%= user.nickname %></td>
   <td><%= user.final(course_id) %></td>
-  <td><%= link_to 'Grade', grade_course_user_path(course_id: course_id, id: user.id) %></td>
+  <td><%= link_to 'Regrade to adjust', grade_course_user_path(course_id: course_id, id: user.id) %></td>
 </tr>

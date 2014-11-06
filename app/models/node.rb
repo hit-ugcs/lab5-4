@@ -2,6 +2,10 @@ class Node < ActiveRecord::Base
 
   belongs_to :course
 
+  def create(params)
+    super(params.merge(child_count: 0))
+  end
+
   def children
     Node.where(father_id: id)
   end
@@ -24,9 +28,10 @@ class Node < ActiveRecord::Base
 
   def count(user_id)
     if has_sub?
-      children.inject(0) { |mem, var| mem + var.binding_value(user_id).value }
+      children.inject(0) { |mem, node| mem + node.count(user_id) }
     else
-      binding_value(user_id).value * weight / 100.0
+      val = binding_value(user_id)
+      val.nil? ? nil : val.value * weight / 100.0
     end
   end
 

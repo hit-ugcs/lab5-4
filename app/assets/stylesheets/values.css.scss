@@ -1,3 +1,21 @@
 // Place all the styles related to the values controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+span.ajax-input {
+	position: relative;
+}
+
+
+.data-sending:after {
+	font-family: 'FontAwesome';
+    left: -20px;
+    content: "\f007";
+}
+
+.state-success:before {
+	font-family: 'FontAwesome';
+	position: absolute;
+    left: 40px;
+    content: "\f007";
+}

@@ -4,9 +4,18 @@
   <div class="col-md-3  text-right">
     <label class="control-label"><%= n.name %></label>    
   </div>
-  <div class="col-md-8">
-    <input class="form-control" type="number"
-        value="<%= v.value %>"
-        data-score-item data-value-id=<%= v.id %> >
+  <div class="col-md-7">
+    
+    <div class="input-group">
+      <span id="status" class="input-group-addon"><%= fa_icon 'check', class: 'fa-fw' %></span>
+      <span class="ajax-input">
+        <input class="form-control" type="number"
+          value="<%= v.value %>"
+          data-score-item data-value-id=<%= v.id %> >
+      </span>
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" tabindex="-1">Submit</button>
+      </span>
+  </div>
   </div>
 </div>

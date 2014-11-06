@@ -7,7 +7,7 @@ ready = ->
   $("input[data-score-item]").focusout ->
     me = $(this)
     value = $(this).val()
-    $(this).addClass("data-sending")
+    $(this).closest('span#statue').html("<i class='fa fa-fw fa-refresh fa-spin'></i>")
     $(this).closest('div.form-group').removeClass('has-success')
     $.ajax
       type: 'patch',
@@ -18,8 +18,7 @@ ready = ->
         value:
           value: value
       success: (data) ->
-        console.log(data['value'])
-        me.removeClass("data-sending")
+        $(this).closest('span#statue').html("<i class='fa fa-fw fa-check'></i>")
         me.closest('div.form-group').addClass('has-success')
 
 

@@ -29,10 +29,12 @@ class NodesController < ApplicationController
 
   def destroy
     @node = Node.find(params[:id])
-    @node.try(:delete)
     unless @node.father_id == -1
       @node.father.decrement(:child_count)
+    else
+      @node.children.map(&:delete)
     end
+    @node.try(:delete)
     redirect_to '/courses/1/grade_configuration'
   end
 

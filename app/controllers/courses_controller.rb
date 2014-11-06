@@ -21,7 +21,11 @@ class CoursesController < ApplicationController
   def final_report
     @course = Course.find(params[:id])
     @node_info = @course.node_info
-    @user_info = @course.user_info
+    @user_info = User.all
+    @user = User.all
+    @partition = {
+      e: @user.select {|u| u.final(params[:id]) < 60}
+    }
   end
 
 end

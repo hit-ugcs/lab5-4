@@ -40,8 +40,8 @@
     </table>
     <hr>
     <fieldset><legend><h2>Grade Field</h1></legend></fieldset>
-    <% @grades.each do |n| %>
-      <h3><%= n.name %><%= "(#{n.weight}%)" %></h3>
+    <% @grades.each_with_index do |n, i| %>
+      <h3><%= "Item ##{i}. #{n.name} (#{n.weight}%)" %></h3>
       <% unless n.children.empty? %>
         <% n.children.each do |s| %>
           <%= render partial: 'values/item.html.erb', locals: {n: s} %>

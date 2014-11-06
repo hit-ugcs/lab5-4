@@ -18,4 +18,8 @@ class Node < ActiveRecord::Base
     father_id == -1 ? nil : Node.find(father_id)
   end
 
+  def binding_value(user_id)
+    Value.where(node_id: id, user_id: user_id).first
+  end
+
 end

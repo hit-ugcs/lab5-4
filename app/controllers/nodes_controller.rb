@@ -6,8 +6,9 @@ class NodesController < ApplicationController
     @node = Node.new(node_params.merge(course_id: params[:course_id]))
     respond_to do |format|
       if @node.save
+        @node.father.increment!(:child_count) if @node.father
         format.html {redirect_to '/courses/1/grade_configuration'}
-        format.json { render json: @node, status: :created, location: @student }
+        format.json { render json: @node, status: :created }
       end
     end
     #if @node.save
@@ -19,7 +20,7 @@ class NodesController < ApplicationController
 
   def edit
     @node = Node.find(params[:id])
-    @sub_item = @node.sub_item
+    @children = @node.children
   end
 
   def new
@@ -29,6 +30,9 @@ class NodesController < ApplicationController
   def destroy
     @node = Node.find(params[:id])
     @node.try(:delete)
+    unless @node.father_id == -1
+      @node.father.decrement(:child_count)
+    end
     redirect_to '/courses/1/grade_configuration'
   end
 

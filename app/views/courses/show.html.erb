@@ -26,8 +26,8 @@
         <tbody>
           <% @sheet_info.each_with_index do |sheet, index| %>
             <%= render partial: 'list.html.erb', locals: {sheet: sheet, index: index, sub: false} %>
-            <% if sheet.sub_item %>
-              <% sheet.sub_item.each do |s| %>
+            <% if c = sheet.children %>
+              <% c.each do |s| %>
                 <%= render partial: 'list.html.erb', locals: {sheet: s, index: '', sub: true} %>
               <% end %>
             <% end %>

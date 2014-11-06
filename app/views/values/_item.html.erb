@@ -1,0 +1,4 @@
+  <div class="col-md-3  text-right">
+    <label class="control-label"><%= n.name %></label>    
+  </div>
+  <div class="col-md-9"><input class="form-control" type="number" value=<%= v = Value.where(node_id: n.id, user_id: params[:id]).first_or_create; v.value %> ></div>

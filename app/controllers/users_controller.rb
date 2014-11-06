@@ -13,13 +13,19 @@ class UsersController < ApplicationController
     end
   end
 
-  def grade
-    @user = User.find(params[:user_id])
-    @nodes = Node.where(course_id: params[:course_id])
-  end
-
   def edit
     @user = User.find(params[:id])
+  end
+
+  def grade
+    @user = User.find(params[:id])
+    @grades = @user.grade_list(params[:course_id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(user_params)
+    redirect_to '/courses/1'
   end
 
   private

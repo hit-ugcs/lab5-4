@@ -2,16 +2,20 @@ class Node < ActiveRecord::Base
 
   belongs_to :course
 
-  def sub_item
+  def children
     Node.where(father_id: id)
   end
 
   def has_sub?
-    Node.any? {|r| r.father_id == id}
+    child_count != 0
   end
 
   def is_sub?
     father_id != -1
+  end
+
+  def father
+    father_id == -1 ? nil : Node.find(father_id)
   end
 
 end

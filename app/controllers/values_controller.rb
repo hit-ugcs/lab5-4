@@ -5,10 +5,9 @@ class ValuesController < ApplicationController
   end
 
   def update
-    rel = course_id: params[:node_id], user_id: params[:user_id]
-    @value = Value.find(rel)
+    @value = Value.find(params[:id])
     respond_to do |format|
-      if @value.update_attributes(values_params)
+      if @value.update_attributes(value: params[:value][:value])
         format.json { render json: @value, statue: :updated}
       else
         format.json { render statue: :error }
@@ -19,7 +18,7 @@ class ValuesController < ApplicationController
   private
 
   def values_params
-    params.require(:values).permit(:user_id, :node_id)
+    params.require(:value).permit(:user_id, :node_id)
   end
 
 end

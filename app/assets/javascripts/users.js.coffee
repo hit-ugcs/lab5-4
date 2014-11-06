@@ -13,7 +13,7 @@ ready = ->
     $.ajax
       type: 'patch',
       url: "/values/#{$(this).attr('data-value-id')}",
-      timeout: 3000,
+      timeout: 5000,
       data:
         utf8: "✓"
         authenticity_token: $('meta[name="csrf-token"]').attr('content')

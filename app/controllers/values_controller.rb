@@ -10,7 +10,7 @@ class ValuesController < ApplicationController
       if @value.update_attributes(value: params[:value][:value])
         format.json { render json: @value }
       else
-        format.json { render status: :error }
+        format.json { render json: @value.errors, status: :error }
       end
     end
   end

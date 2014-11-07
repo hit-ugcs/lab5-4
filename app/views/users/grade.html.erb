@@ -54,7 +54,10 @@
         <%= render partial: 'values/item.html.erb', locals: {n: n} %>
       <% end %>
     <% end %>
-    <div class="text-center"><%= link_to (fa_icon 'arrow-left', text: 'Save and Back', class: 'fa-fw'), grade_students_course_path(id: params[:course_id]), class: 'btn btn-primary' %></div>
+    <div class="text-center">
+      <%= link_to (fa_icon 'arrow-left', text: 'Back', class: 'fa-fw'), grade_students_course_path(id: params[:course_id]), class: 'btn btn-primary' %>
+      <%= link_to (fa_icon 'envelope-o', text: 'Notifier', class: 'fa-fw'), send_grade_info_course_user_path(course_id: params[:course_id], id: @user.id), data: { confirm: "Do you want to send an email to #{@user.email}?" }, class: 'btn btn-primary' %>
+    </div>
     
   </div>
 

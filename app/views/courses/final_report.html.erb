@@ -36,7 +36,7 @@
           <tbody>
             <% @partition[k].each do |user| %>
               <%= render partial: 'users/list.html.erb', locals: {user: user, course_id: params[:id]} %>
-            <% end %>
+            <% end if @partition[k] %>
           </tbody>
         </table>
       </div>

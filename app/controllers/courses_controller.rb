@@ -22,15 +22,15 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @user = User.all.sort_by {|u| u.final(params[:id])}
     passed, unpass = @user.partition {|u| u.final(params[:id]) >= 60}
-    a = (passed.size * 0.15).floor
-    b = (passed.size * 0.35).floor
-    c = (passed.size * 0.35).floor
+    a = [(passed.size * 0.15).floor, 1].max
+    b = [(passed.size * 0.35).floor, 1].max
+    c = [(passed.size * 0.35).floor, 1].max
 
     @partition = {
-      a: passed[0...a],
-      b: passed[a..a+b],
-      c: passed[a+b..a+b+c],
-      d: passed[a+b+c..-1],
+      a: passed.slice(0, a),
+      b: passed.slice(a, b),
+      c: passed.slice(a+b+c, c),
+      d: passed.last(c),
       e: unpass
     }
   end

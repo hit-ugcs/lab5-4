@@ -5,7 +5,7 @@ class Usermailer < ActionMailer::Base
     @course = course
     @sheet_info = @course.sheet_info
     @user = user
-    mail to: @user.email, subject: "Send Grade Info"
+    mail to: @user.email, subject: "Grade of #{@course.name}"
   end
 
 end

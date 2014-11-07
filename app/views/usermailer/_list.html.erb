@@ -1,7 +1,8 @@
 <tr>
   <td>
     <%= sub ? "┣▶" : "" %>
-    <%= sheet.name %>
+    <%= node.name %>
   </td>
-  <td><%= sub ? "┣▶" : "" %><%= sheet.weight %>%</td>
+  <td><%= sub ? "┣▶" : "" %><%= node.weight %>%</td>
+  <td><%= node.count(user_id) %></td>
 </tr>

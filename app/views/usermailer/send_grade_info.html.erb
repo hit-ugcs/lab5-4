@@ -3,13 +3,13 @@
     <tr>
       <th>Name</th>
       <th>Weight</th>
-      <th>Grade</th>
+      <th>Grade(After Weighted)</th>
     </tr>
   </thead>
   <tbody>
     <% @sheet_info.each do |node| %>
       <%= render partial: 'list.html.erb', locals: {node: node, user_id: @user.id, sub: false} %>
-      <% node.children do |n| %>
+      <% node.children.each do |n| %>
         <%= render partial: 'list.html.erb', locals: {node: n, user_id: @user.id, sub: true} %>
       <% end if node.has_sub? %>
     <% end %>

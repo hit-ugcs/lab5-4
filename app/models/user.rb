@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
       val = node.count(id)
       memo + (val.nil? ? 0 : val)
     end
-    [res, 100].min
+    [res, 100].min.round(2)
   end
 
   def grade_list(course_id)

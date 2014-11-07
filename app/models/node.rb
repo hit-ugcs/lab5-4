@@ -36,4 +36,8 @@ class Node < ActiveRecord::Base
     end
   end
 
+  def label_name
+    has_sub? ? "#{name} (#{weight}%)" : "Score"
+  end
+
 end
